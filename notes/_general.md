@@ -1,7 +1,7 @@
 ---
 placeholder: true
 ---
-> PLACEHOLDER: day-wide announcements, shown on every break and from the ★ button.
+> PLACEHOLDER: day-wide announcements, opened from the ★ button.
 > Paste yours from the Google Doc, then set `placeholder: false` above.
 
 ## Housekeeping

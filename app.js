@@ -100,11 +100,7 @@ function slotView(it, i) {
 function breakView(it, i) {
   return `
     ${header(it, i)}
-    <p class="where">${esc(it.room)}</p>
-    <section class="notes card wide">
-      <div class="card-h">Announcements ${general?.meta.placeholder === true ? '<span class="badge">PLACEHOLDER</span>' : ''}</div>
-      <div class="md">${general?.body ? renderMarkdown(general.body) : '<p class="muted">No announcements.</p>'}</div>
-    </section>`;
+    <p class="where">${esc(it.room)}</p>`;
 }
 
 function header(it, i) {

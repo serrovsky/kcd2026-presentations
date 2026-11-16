@@ -23,7 +23,7 @@ qa_questions:
 Your intro script, in Markdown: **bold**, _italic_, ==highlight==, lists, ## headings.
 ```
 
-`notes/_general.md` holds the day-wide announcements. They're shown on every break and from the ★ button.
+`notes/_general.md` holds the day-wide announcements, opened from the ★ button.
 
 > The repo is public, so everything in `notes/` is publicly readable.
 
