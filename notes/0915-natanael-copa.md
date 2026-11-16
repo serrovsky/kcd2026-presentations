@@ -2,7 +2,8 @@
 # Keynote: Small Is a Strategy - What Alpine Linux and k0s Taught Me About Cloud Native Systems | Natanael Copa
 session: 1292427
 placeholder: true
-pronunciation:
+# pronunciation is a best guess - confirm with the speaker
+pronunciation: NAH-tah-nah-el KOH-pah
 checklist:
   - Speaker present & ready
   - Mic / headset check
