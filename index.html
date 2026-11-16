@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0e1116">
+  <meta name="robots" content="noindex">
+  <title>Host · KCD Porto 2026</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="bar">
+    <button id="agendaBtn" aria-label="Agenda">☰<span class="lbl"> Agenda</span></button>
+    <div class="where-now">
+      <span id="room" class="room"></span>
+      <span class="clockwrap"><span id="clock" class="clock">--:--</span>
+        <span id="delay" class="pill warn" hidden></span>
+        <span id="rehearsal" class="pill" hidden>REHEARSAL</span></span>
+    </div>
+    <button id="nowBtn">Now</button>
+    <button id="generalBtn" aria-label="Announcements">★</button>
+    <button id="settingsBtn" aria-label="Settings">⚙</button>
+  </header>
+
+  <button id="nowBanner" class="banner" hidden></button>
+
+  <main id="view"><p class="muted">Loading…</p></main>
+
+  <footer class="nav">
+    <button id="prev" aria-label="Previous">‹</button>
+    <div id="nextUp" class="nextup"></div>
+    <button id="next" aria-label="Next">›</button>
+  </footer>
+
+  <dialog id="agenda">
+    <div class="dlg-h"><b>Agenda</b><button data-close>✕</button></div>
+    <ol id="agendaList" class="agenda"></ol>
+  </dialog>
+
+  <dialog id="general">
+    <div class="dlg-h"><b>Announcements</b><button data-close>✕</button></div>
+    <div id="generalBody" class="md"></div>
+  </dialog>
+
+  <dialog id="settings">
+    <div class="dlg-h"><b>Settings</b><button data-close>✕</button></div>
+    <div class="set">
+      <div class="set-row">
+        <span>Running late by <b id="delayVal">0 min</b></span>
+        <span class="btns"><button data-delay="-5">−5</button><button data-delay="-1">−1</button><button data-delay="1">+1</button><button data-delay="5">+5</button><button data-delay="0">Reset</button></span>
+      </div>
+      <div class="set-row">
+        <span>Text size <b id="scaleVal">100%</b></span>
+        <span class="btns"><button data-scale="-0.1">A−</button><button data-scale="0.1">A+</button></span>
+      </div>
+      <div class="set-row">
+        <label><input type="checkbox" id="wakeToggle"> Keep screen awake</label>
+      </div>
+      <div class="set-row">
+        <span class="btns"><button id="reloadBtn">Reload latest notes</button><button id="resetTicks">Clear checklist ticks</button></span>
+      </div>
+      <p id="info" class="muted small"></p>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

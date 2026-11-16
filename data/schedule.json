@@ -1,0 +1,324 @@
+{
+  "event": "KCD Porto 2026",
+  "day": "2026-11-19",
+  "room": "Cleva Auditorium",
+  "timezone": "Europe/Lisbon",
+  "generatedAt": "2026-11-16T10:05:05+00:00",
+  "items": [
+    {
+      "id": "4ef286ef-3acc-4a68-830b-e5f0c9c8110d",
+      "title": "Check in & Coffee",
+      "startsAt": "2026-11-19T07:50:00",
+      "endsAt": "2026-11-19T09:00:00",
+      "kind": "break",
+      "room": "Social/Dining Area",
+      "description": "",
+      "speakers": [],
+      "notes": null
+    },
+    {
+      "id": "629e3fba-6bf7-4606-8f33-7c15db3e2ced",
+      "title": "Welcome ceremony",
+      "startsAt": "2026-11-19T09:00:00",
+      "endsAt": "2026-11-19T09:15:00",
+      "kind": "ceremony",
+      "room": "Cleva Auditorium",
+      "description": "",
+      "speakers": [],
+      "notes": "notes/0900-welcome-ceremony.md"
+    },
+    {
+      "id": "1292427",
+      "title": "Keynote: Small Is a Strategy - What Alpine Linux and k0s Taught Me About Cloud Native Systems",
+      "startsAt": "2026-11-19T09:15:00",
+      "endsAt": "2026-11-19T09:45:00",
+      "kind": "keynote",
+      "room": "Cleva Auditorium",
+      "description": "We spent a decade making hardware disappear: smaller images, interchangeable nodes, and Kubernetes packaged by k0s as a single binary. Then AI made it impossible to ignore the server underneath.\r\n\r\nDrawing on Alpine Linux and k0s, Natanael Copa asks whether “small” still works when hardware becomes specialized and scarce. Small was never about megabytes. It is a strategy for limiting what can surprise us.",
+      "speakers": [
+        {
+          "id": "426af17c-8c41-442e-86c0-7874860ccf14",
+          "name": "Natanael Copa",
+          "tagline": "Creator of Alpine Linux",
+          "bio": "Natanael Copa is the creator of Alpine Linux and a maintainer of the k0s Kubernetes distribution. He has over 20 years of experience in Linux and open-source infrastructure, with a focus on minimal, secure systems.",
+          "photo": "data/photos/426af17c-8c41-442e-86c0-7874860ccf14.png"
+        }
+      ],
+      "notes": "notes/0915-natanael-copa.md"
+    },
+    {
+      "id": "1280068",
+      "title": "Charting the Kubernetes Ecosystem for an AI SRE: 35 Domain Experts Under a Tight SLO",
+      "startsAt": "2026-11-19T10:00:00",
+      "endsAt": "2026-11-19T10:30:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "An AI SRE doing Kubernetes root-cause analysis faces a different problem on every call: today a CrashLoopBackOff, tomorrow a stuck ArgoCD sync, next a Kafka broker that won't rejoin. The obvious strategy: teach it everything about every technology it might meet. But then it slows down, loses focus, and spends tokens on knowledge it never needed. In full automation under a 1-2 minute SLO, that becomes too slow and expensive, and prone to stopping prematurely.\r\n\r\nThis talk is about the pattern we built to hold that SLO without losing analysis quality. We call the building block a Subject Matter Expert, or SME: a small unit of domain knowledge for one technology. Think of it as an agentic skill with a few extra features - one the agent never has to stop and decide to load. How that summoning works is most of the story.\r\n\r\nWe have chosen 35 technologies that best reflect the Kubernetes SRE ecosystem: CNCF projects like Flux, Cilium, and KEDA, but also the non-CNCF world clusters run on - Kafka, Postgres, nginx - and some as big as AWS or GCP. To learn which SMEs earn their keep and which aren't worth the tokens and seconds, we measured them one by one with an LLM-as-a-judge. Not all of them actually helped.\r\n\r\nI will share the findings: how much each SME moved quality, and what it cost in time and tokens. You'll leave with a reusable pattern for giving any agent deep, on-demand expertise on a tight time-and-cost budget - and the numbers to decide which experts to build and which to cut.",
+      "speakers": [
+        {
+          "id": "cbd9da3d-f90e-4bb0-a81e-9de8990a7239",
+          "name": "Andrei Pokhilko",
+          "tagline": "Think deep, code fast, share wide",
+          "bio": "Andrei is an Innovation Researcher in the CTO Office at Komodor with 20+ years of engineering experience spanning startup co-founding (UP9), open source leadership at CA Technologies, performance testing at Yandex, and founding Loadosophia.org (acquired by BlazeMeter). He's the creator of multiple successful open source projects including Taurus, Helm Dashboard, Komoplane, and currently works on Klaudia AI assistant. As a passionate advocate for knowledge sharing, Andrei has been speaking at conferences worldwide for 15+ years, covering topics from performance testing to Kubernetes and AI. He believes in combining practical engineering with deep theoretical understanding to build technology that helps others succeed.",
+          "photo": "data/photos/cbd9da3d-f90e-4bb0-a81e-9de8990a7239.jpg"
+        }
+      ],
+      "notes": "notes/1000-andrei-pokhilko.md"
+    },
+    {
+      "id": "1304542",
+      "title": "Virtual Machines as First-Class Kubernetes Citizens on Cloud Hypervisor",
+      "startsAt": "2026-11-19T10:40:00",
+      "endsAt": "2026-11-19T11:10:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "Kubernetes reconciles a Pod from declared state to running process through a controller loop. KubeSwift applies the same model to full virtual machines: you declare a VM as a custom resource, a controller reconciles it into a Pod, and inside that Pod a small Rust launcher starts a guest on Cloud Hypervisor, a memory-safe, deliberately minimal VMM. No libvirt, no node agent daemonset, no parallel control plane. One controller-manager and one launcher binary per VM.\r\nThis talk is about the design decisions that fall out of taking \"VMs as first-class workloads\" literally, and where the obvious approach turned out to be wrong. I'll walk through the launcher architecture and why guest state is reported through Pod annotations rather than a privileged status-writer, a choice that keeps the launcher's RBAC scoped to its own Pod and, unexpectedly, gives you the control channel for snapshots and live migration for free. I'll cover the networking model that lets a guest keep its IP address across a live migration between nodes on OVN, in roughly three seconds, and the in-guest vsock agent that lets you boot a fleet of clones from a single memory snapshot by regenerating machine identity in place, with no reboot. I'll explain why Cloud Hypervisor's flat PCIe model handles GPU passthrough, Windows guests, and sub-second microVM boot from a kernel image, and the one topology where it doesn't, so QEMU stays as a narrow secondary path rather than the default.\r\nThroughout, the connective tissue is a set of hard design rules: minimalism, no silent failures, terminal states stay terminal and what they cost in practice when a real cluster surfaces the RBAC, mount-semantics, and firmware edge cases that fake-client unit tests never will. Attendees will leave understanding how to model a VM as a reconciled Kubernetes resource, the specific trade-offs of building on a microhypervisor instead of the traditional virtualization stack, and a reusable pattern for using the Pod annotation surface as both status and control channel.",
+      "speakers": [
+        {
+          "id": "0a1cdc66-fd11-42cf-a1f2-91466b04efc9",
+          "name": "William Rizzo",
+          "tagline": "Global Field CTO at Mirantis",
+          "bio": "William is a CNCF Ambassador and Linkerd Ambassador currently working at Mirantis as Global Field CTO. He’s focused on helping customers designing, building, and running their initiatives on Edge, AI and Platform Engineering. He wore many hats in the IT world, Engineering, Pre-Post sales, Product Owner and Consulting. from HPC, Storage to Distributed Systems.\r\nWilliam enjoys volunteering in several Cloud Native groups and organizing the KCD Netherlands events.",
+          "photo": "data/photos/0a1cdc66-fd11-42cf-a1f2-91466b04efc9.jpg"
+        }
+      ],
+      "notes": "notes/1040-william-rizzo.md"
+    },
+    {
+      "id": "a104c340-df5e-4555-8ffd-4d2999940dcf",
+      "title": "Coffee Break",
+      "startsAt": "2026-11-19T11:10:00",
+      "endsAt": "2026-11-19T11:30:00",
+      "kind": "break",
+      "room": "Social/Dining Area",
+      "description": "",
+      "speakers": [],
+      "notes": null
+    },
+    {
+      "id": "1292548",
+      "title": "Zero Trust for 5G Networks: Securing a Cloud-Native Core with Cilium, SPIRE, and eBPF",
+      "startsAt": "2026-11-19T11:30:00",
+      "endsAt": "2026-11-19T12:00:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "5G cores run on Kubernetes. That means the same attack surfaces platform engineers deal with every day now exist inside critical network infrastructure, and most deployments treat security as an afterthought. In this talk I'll walk through what happens when you actually attack a cloud-native 5G core with no policies in place, then show how to fix it using tools the Kubernetes community already knows: Cilium, SPIRE, and Hubble. No proprietary hardware, no managed services, just open source tooling applied to a real threat model. The results on both sides are concrete. The unprotected core was fully exposed. After applying Zero Trust controls, every attack vector was blocked while the network kept running normally.\r\nYou'll leave with practical patterns for securing multi-protocol workloads, workload identity without a service mesh, and a set of hard-learned gotchas that don't show up in any official documentation. No 5G background required.",
+      "speakers": [
+        {
+          "id": "68a1258a-a54e-45e2-afbf-b04c6fe67cd4",
+          "name": "Bryan Alejandro Cucho Suyo",
+          "tagline": "Telecom Engineer · Télécom Paris · 5G Security & Cloud Native and Cloud Infrastructure Enthusiast",
+          "bio": "Telecommunications Engineer from UNI-FIEE, Peru, currently pursuing a Master's in Networks and Computer Science at Télécom Paris – IP Paris. My background spans digital markets, presales, and network architecture, with a growing focus on cloud-native security and 5G infrastructure. Placed 3rd at World ICT 2025 in Shenzhen and presented at KCD Lima Perú 2026.",
+          "photo": "data/photos/68a1258a-a54e-45e2-afbf-b04c6fe67cd4.jpg"
+        }
+      ],
+      "notes": "notes/1130-bryan-alejandro-cucho-suyo.md"
+    },
+    {
+      "id": "1286630",
+      "title": "AI-Based Resource Management for Network Slicing in Cloud-Native Mobile Networks",
+      "startsAt": "2026-11-19T12:10:00",
+      "endsAt": "2026-11-19T12:40:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "Standard Kubernetes autoscalers are not well suited to complex, stateful, real-time workloads. HPA only reacts to current load, whereas classic VPA restarts pods to apply changes, which can be disruptive when session state is critical like in Cloud-Native Mobile Networks\r\n\r\nThis session presents an AI-driven approach for real-time vertical scaling of Cloud-Native Network Functions (CNFs) on Kubernetes without restarting pods. The architecture comprises two components: an AI block and a K8s controller. The AI block combines a continual learning model to forecast traffic with an offline reinforcement learning agent that prescribes optimal resources usage in advance.\r\n\r\nThe K8s controller uses the InPlaceVerticalPodScaling feature gate to resize pod resources without restarts, thus preserving session state and signalling.\r\n\r\nAttendees will learn how to build a closed-loop, zero-touch system that anticipates peaks, prevents saturation and reduces overprovisioning in Cloud-Native Mobile Networks.",
+      "speakers": [
+        {
+          "id": "c6408872-8c40-4485-96ee-062d9c2f378e",
+          "name": "Álvaro Vázquez Rodríguez",
+          "tagline": "Senior Research-Engineer @ Gradiant",
+          "bio": "Álvaro Vázquez Rodríguez is a Telecommunications Engineer who obtained a Degree in Telecommunications Technology Engineering in 2020 and a Master's Degree in Telecommunications Engineering in 2022, both from the University of Vigo. Since 2021, he has been working at GRADIANT in the Cloud-Continuum technical research line, carrying out projects related to Cloud-Native technologies and their application, and in projects related to Edge/Cloud Computing, mainly focused on mobile communication networks. At the same time, Álvaro is an industrial PhD student working on his doctoral thesis on the optimisation of mobile networks in the Cloud-Continuum in collaboration with the I&CLab at the University of Vigo.",
+          "photo": "data/photos/c6408872-8c40-4485-96ee-062d9c2f378e.jpg"
+        },
+        {
+          "id": "5f846b6a-2a67-4846-90df-8392c6071125",
+          "name": "Juan Ponton Rodriguez",
+          "tagline": "jponton",
+          "bio": "I am a Telecommunications Engineer specializing in cloud-native architectures and declarative infrastructure management. My background combines research and hands-on development in integrating mobile networks using technologies like Kubernetes, OpenStack, and Open5GS. Currently, I am deeply focused on multi-cluster federation and management with Karmada. I am passionate about tackling complex infrastructure challenges, exploring innovative solutions for network optimization, and deploying resilient systems on modern distributed platforms.",
+          "photo": "data/photos/5f846b6a-2a67-4846-90df-8392c6071125.jpg"
+        }
+      ],
+      "notes": "notes/1210-alvaro-vazquez-rodriguez.md"
+    },
+    {
+      "id": "1282990",
+      "title": "AI Native Platform Engineering: How we build a full developer platform in record time",
+      "startsAt": "2026-11-19T12:50:00",
+      "endsAt": "2026-11-19T13:20:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "When we finally got the greenlight to build Composable Environments, we were building during the AI coding explosion. What would have taken 18 months took a fraction of that. This talk is about how a small platform team used AI-assisted development to move from proof-of-concept to a full developer experience platform - CLI tooling, routing infrastructure, async Kafka isolation, browser extensions - fast enough to outrun organizational doubt.  We'll share the architecture, the shortcuts that held up and the ones that didn't, and what \"AI-native platform engineering\" actually looks like day-to-day.",
+      "speakers": [
+        {
+          "id": "c7485bc8-49bd-4445-a7d6-be404847a673",
+          "name": "Daniel Stanoescu",
+          "tagline": "Principal Engineer @ Miro",
+          "bio": "13 years of experience building infrastructure platforms in Skyscanner & Miro ( AI/ML Inference Serving, Protobuf API Ecosystem + Tooling, Agentic AI sandboxing + AI Factories ) \r\n\r\nAll things developer experience + distributed systems platforms.",
+          "photo": "data/photos/c7485bc8-49bd-4445-a7d6-be404847a673.jpg"
+        },
+        {
+          "id": "e73472f2-2f6a-4fe9-a3db-62aef1fb449b",
+          "name": "Andrew Eacott",
+          "tagline": "Senior Principal Engineer @ Miro",
+          "bio": "Andrew is a veteran software leader with two decades of experience across diverse industries, including finance and eCommerce.\r\nDuring his four years as a Principal Software Engineer at Miro, he has driven both infrastructure and product initiatives.  He currently leads AI adoption for engineering, product, and design from within the Developer Experience stream. His background also includes three years at Skyscanner, where he helped architect a robust machine learning and personalization platform.  Andrew lives with his family in the UK and tries his best not to think about imposter syndrome.",
+          "photo": "data/photos/e73472f2-2f6a-4fe9-a3db-62aef1fb449b.jpg"
+        }
+      ],
+      "notes": "notes/1250-daniel-stanoescu.md"
+    },
+    {
+      "id": "d6aa9b63-75f9-4ea5-9372-50216750fdf0",
+      "title": "Lunch",
+      "startsAt": "2026-11-19T13:20:00",
+      "endsAt": "2026-11-19T14:30:00",
+      "kind": "break",
+      "room": "Social/Dining Area",
+      "description": "",
+      "speakers": [],
+      "notes": null
+    },
+    {
+      "id": "1300609",
+      "title": "Beyond Alerts: Detecting and Killing Attacks with Falco and Falco Talon in Seconds",
+      "startsAt": "2026-11-19T14:30:00",
+      "endsAt": "2026-11-19T15:00:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "How fast can you act when a security alert appears? If it takes more than a few seconds, it might already be too late. As time passes, attackers get more opportunities to increase the blast radius.\r\n\r\nIn this session, we will explore Falco, a graduated CNCF project focused on runtime security, together with its companion projects Falcosidekick and Falco Talon. We will start by understanding the fundamentals of Falco, then show how its ecosystem allows not only for detection but also for automated response. We will go through live demo attacks and the respective automated mitigations.\r\n\r\nYou'll leave with a reference architecture to detect, alert, and respond to security threats in seconds, not minutes or hours.",
+      "speakers": [
+        {
+          "id": "039aa25b-a3bf-4a0e-864f-12f8b1618839",
+          "name": "Nuno Adrego",
+          "tagline": "Cloud Engineer",
+          "bio": "Nuno Adrego is a Cloud Engineer and Certified Kubernetes Security Specialist (CKS) with 7 years of experience building reliable, scalable, and secure infrastructure and platforms across different Cloud Service Providers, in both startup and scaleup environments, including work in PCI DSS v4 Level 1 environments. He lives in Porto, Portugal, enjoys sci-fi, and avoids relying too much on tech in his personal life.",
+          "photo": "data/photos/039aa25b-a3bf-4a0e-864f-12f8b1618839.png"
+        }
+      ],
+      "notes": "notes/1430-nuno-adrego.md"
+    },
+    {
+      "id": "1300280",
+      "title": "Every Hop Counts: Networking for Low-Latency LLM Inference on Kubernetes with Cilium",
+      "startsAt": "2026-11-19T15:10:00",
+      "endsAt": "2026-11-19T15:40:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "LLM inference on Kubernetes can look healthy while responses are still slow. The first instinct is to add bigger or more GPUs, and that isn’t always the solution. Inference traffic doesn’t just go straight to the GPU. Every hop (ingress, service routing, pod networking) adds CNI and kube-proxy cost that shows up in p99, but not GPU utilization.\r\nIn this session, we trace a real inference request end-to-end on a GPU cloud deployment, from the client through each service boundary to the model and back. We show what each hop costs with default Kubernetes networking, what changes when Cilium’s eBPF dataplane replaces kube-proxy, and where gains are real versus marginal. You’ll see how to use Hubble to visualize and analyze flow data to find bottlenecks, plus practical GPU tuning (batch size and concurrency limits) and how to use network and GPU metrics together when serving looks fine but latency doesn’t.",
+      "speakers": [
+        {
+          "id": "6b6ce6ae-e7a3-497f-9511-1d6b45244cc8",
+          "name": "Doruk Ozturk",
+          "tagline": "AI/ML on Kubernetes",
+          "bio": "Passionate solutions architect with expertise in containerized applications for high-performance and mission-critical systems. My career has spanned an unconventional path: Hydrogeological Engineer, Research and Development Engineer, Geospatial Big Data Engineer, Tech Lead, Senior Solutions Architect, and now Staff Solutions Architect at Nebius AI Cloud.",
+          "photo": "data/photos/6b6ce6ae-e7a3-497f-9511-1d6b45244cc8.png"
+        },
+        {
+          "id": "997e00d5-d8fd-4a14-9166-592f0a8eccdc",
+          "name": "Re Álvarez Parmar",
+          "tagline": "Principal Solutions Architect, AWS",
+          "bio": "Re has over 20 years of experience in architecting, building and operating enterprise systems and infrastructure. In his current role at AWS as Principal Solutions Architect, he helps some of most the sophisticated Automotive companies modernize their software architecture. His focus over the past few years has been modern application development. Re has given talks at KubeCon US and EU,",
+          "photo": "data/photos/997e00d5-d8fd-4a14-9166-592f0a8eccdc.png"
+        }
+      ],
+      "notes": "notes/1510-doruk-ozturk.md"
+    },
+    {
+      "id": "1299685",
+      "title": "Fail Fast Routing: Reusing the Ingress Controller as a Kubernetes Admission Webhook",
+      "startsAt": "2026-11-19T15:50:00",
+      "endsAt": "2026-11-19T16:20:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "A broken route should fail where it is introduced, not later when the ingress controller finally tries to load it.\r\n\r\nKubernetes can validate object structure, but it cannot know whether a custom routing rule is actually valid for a specific controller. At Zalando we hit this with Skipper, our open-source HTTP router and Kubernetes ingress controller: manifests could pass CI/CD while a typo in a predicate, invalid filter parameters, or an unparsable backend only surfaced later in the routing layer. At our scale, 250+ clusters, 15k+ ingresses, ~200k routes and 500k-2M RPS, this became real production risk.\r\n\r\nThis talk shows how we moved that feedback to `kubectl apply` by reusing Skipper’s own route-processing logic inside a validating admission webhook. Instead of building a separate validator that would drift from runtime behavior, the webhook uses the same filter registry, predicate specs and backend checks as Skipper itself.\r\n\r\nBlog Post https://engineering.zalando.com/posts/2026/04/skipper-validating-admission-webhook.html",
+      "speakers": [
+        {
+          "id": "89e03708-adeb-4830-aaa6-c61068375963",
+          "name": "Veronika Volokitina",
+          "tagline": "Zalando, Software Engineer",
+          "bio": "Veronika Volokitina is a Software Engineer at Zalando working on Kubernetes-based routing and platform engineering. She contributes to Skipper and related open-source tooling, with a focus on validation, safer rollouts, and observability.",
+          "photo": "data/photos/89e03708-adeb-4830-aaa6-c61068375963.png"
+        }
+      ],
+      "notes": "notes/1550-veronika-volokitina.md"
+    },
+    {
+      "id": "fbcda221-b21a-4139-80b3-83729ba0d14c",
+      "title": "Coffee  Break",
+      "startsAt": "2026-11-19T16:20:00",
+      "endsAt": "2026-11-19T16:40:00",
+      "kind": "break",
+      "room": "Social/Dining Area",
+      "description": "",
+      "speakers": [],
+      "notes": null
+    },
+    {
+      "id": "1279183",
+      "title": "Schema Inference and Automation: A New Era for Telemetry Management",
+      "startsAt": "2026-11-19T16:40:00",
+      "endsAt": "2026-11-19T17:10:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "If you’ve ever spent hours fixing broken dashboards after a metric change or chasing down why an alert stopped firing, you’re not alone. The struggle of maintaining backward compatibility makes telemetry brittle, hard to trust, and difficult to evolve. The OpenTelemetry community has introduced the idea of Telemetry First, advanced by the Weaver project, where telemetry schemas are treated as first-class citizens. In this session, you will see how adopting a schema-driven approach can transform observability from an afterthought into a design principle.\r\nThe talk will cover two dimensions: manually defining schemas to bring order to new and existing telemetry, and exploring how runtime schema inference can accelerate adoption in complex, legacy platforms. Attendees will learn how Telemetry First enables automation of dashboards, alerts, and instrumentation clients; enforces data quality checks; powers contract testing; and establishes a living telemetry catalog with history and lineage.",
+      "speakers": [
+        {
+          "id": "b6795401-ed6d-45fd-af87-f1156e4dc310",
+          "name": "Nicolas Takashi",
+          "tagline": "Principal Engineer at Dash0",
+          "bio": "I’m a Engineer passionate about observability, distributed systems, and building products that users enjoy using.\r\n\r\nOver the years, I’ve helped scale telemetry systems that support 1,000+ engineers and process millions of data points per second. I’ve led org-wide observability efforts, built developer tooling, and contributed to projects like Prometheus, Thanos, and OpenTelemetry. I’m also a maintainer of Prometheus Operator.",
+          "photo": "data/photos/b6795401-ed6d-45fd-af87-f1156e4dc310.jpg"
+        }
+      ],
+      "notes": "notes/1640-nicolas-takashi.md"
+    },
+    {
+      "id": "1286102",
+      "title": "One Policy Engine, Many Protocols: Unifying Authorization Across SSH, gRPC, and Kubernetes with OPA",
+      "startsAt": "2026-11-19T17:20:00",
+      "endsAt": "2026-11-19T17:50:00",
+      "kind": "talk",
+      "room": "Cleva Auditorium",
+      "description": "Access control in a multi-tenant platform gets messy fast when every service that needs to make a decision ends up with its own rules for making it: one set of rules for SSH access, another for the API, a third for who gets a Kubernetes service account token.\r\n\r\nIn k8shell, an open-source Kubernetes-native platform serving 300+ student workspaces per semester, we consolidated all of this into a single OPA/Rego policy service, called over gRPC from every component that needs an authorization decision: SSH channel authorization (shell, exec, sftp, port-forwarding), session lifecycle and audit recording, our identity gRPC API, and personal access token scoping.\r\n\r\nWe'll walk through how a single external policy point handles fundamentally different actions and protocols through one consistent scope grammar (domain:action:qualifier:constraint) - from coarse decisions like \"can this user open a shell into this workspace at all\" to fine-grained ones like \"can this token read this user's own profile, but nobody else's.\" We'll cover how session-start policy attaches obligations that decide what gets audit-recorded per SSH channel type (shell, exec, direct-tcpip, sftp), how personal access tokens get scoped and constrained down from a user's full policy at issuance time, and the tradeoffs of centralizing authz versus letting each service own its own checks.",
+      "speakers": [
+        {
+          "id": "0f594cf4-d3a0-425e-8322-da7433d45e17",
+          "name": "Tomas Vitvar",
+          "tagline": "Software Engineer and Lecturer",
+          "bio": "Tomas Vitvar is an Associate Professor at the Czech Technical University in Prague and a technology leader with over 20 years of experience in software engineering, DevOps, and cloud-native infrastructure. He collaborates with organizations such as Vodafone UK, IKEA, and Volvo on designing and operating Kubernetes-based and service-oriented platforms. His work spans full-stack development, infrastructure design, troubleshooting, and performance tuning. Tomas has contributed to numerous research and development projects in service-oriented computing and web engineering and has published over 40 papers in international venues such as IEEE Internet Computing and IEEE Software. He co-authored a book on Web and SOA technologies for e-government and has co-organized several research events, including the AAAI Spring Symposium at Stanford University. Tomas holds a Ph.D. in Computer Science from the Czech Technical University in Prague and combines academic research with practical experience in large-scale system design and operations.",
+          "photo": "data/photos/0f594cf4-d3a0-425e-8322-da7433d45e17.png"
+        }
+      ],
+      "notes": "notes/1720-tomas-vitvar.md"
+    },
+    {
+      "id": "1334329",
+      "title": "Keynote: AI Conformance and Open Source Governance",
+      "startsAt": "2026-11-19T18:00:00",
+      "endsAt": "2026-11-19T18:30:00",
+      "kind": "keynote",
+      "room": "Cleva Auditorium",
+      "description": "AI is eating cloud native. Every platform adds an AI tab, every vendor ships an AI-powered feature, and nobody can verify any of it. The same standard Kubernetes sets for conformance is what AI infrastructure needs now: transparent, community-driven, verifiable. Verifiability beats marketing. The commons model produces trust that proprietary certification cannot match. Open standards are more than better APIs: they are the foundation for AI infrastructure that regulators, operators, and users can trust.",
+      "speakers": [
+        {
+          "id": "60ea1dd4-de82-4570-a4d2-e248421c297c",
+          "name": "Mario Fahlandt",
+          "tagline": "Service Delivery Architect",
+          "bio": "Mario Fahlandt is a CNCF TOC Member, Kubernetes SIG ContribEx Co-Chair, and Lead of the Kubernetes AI Conformance subproject. He is a primary maintainer of cncf/sbom, generating SBOMs for all CNCF projects, and created BOMHort, an open source SBOM governance platform. Mario serves on the Google Developer Advisory Board and is a CNCF and Arm Ambassador. He writes Last Week in Cloud Native (lwcn.dev), a weekly newsletter tracking the cloud native ecosystem. By day, he works as Customer Delivery Architect at Kubermatic.",
+          "photo": "data/photos/60ea1dd4-de82-4570-a4d2-e248421c297c.jpg"
+        }
+      ],
+      "notes": "notes/1800-mario-fahlandt.md"
+    },
+    {
+      "id": "e41cdb73-2d4a-4c87-974a-786af7516124",
+      "title": "Cocktails and fun",
+      "startsAt": "2026-11-19T18:30:00",
+      "endsAt": "2026-11-19T19:30:00",
+      "kind": "break",
+      "room": "Social/Dining Area",
+      "description": "Join us for some good music, cocktails and amazing company",
+      "speakers": [],
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+---
+# Charting the Kubernetes Ecosystem for an AI SRE: 35 Domain Experts Under a Tight SLO | Andrei Pokhilko
+session: 1280068
+placeholder: true
+pronunciation:
+checklist:
+  - Speaker present & ready
+  - Mic / headset check
+  - Slides on screen
+  - Clicker works
+qa_questions:
+  -
+---
+> PLACEHOLDER: paste your notes for this session from the Google Doc here,
+> then set `placeholder: false` above.

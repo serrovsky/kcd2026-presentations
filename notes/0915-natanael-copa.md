@@ -1,0 +1,15 @@
+---
+# Keynote: Small Is a Strategy - What Alpine Linux and k0s Taught Me About Cloud Native Systems | Natanael Copa
+session: 1292427
+placeholder: true
+pronunciation:
+checklist:
+  - Speaker present & ready
+  - Mic / headset check
+  - Slides on screen
+  - Clicker works
+qa_questions:
+  -
+---
+> PLACEHOLDER: paste your notes for this session from the Google Doc here,
+> then set `placeholder: false` above.
